@@ -48,12 +48,34 @@ if uploaded_file is not None:
         hum_col: "humidity"
     })
 
-    # 🔍 Debug (optional but helpful)
     st.write("Renamed columns:", renamed_df.columns.tolist())
 
     # 📈 Plots
-    st.subheader(" Temperature Distribution")
+
+    st.subheader("📉 Temperature Distribution")
     plot_temperature(renamed_df)
 
-    st.subheader(" Temperature vs Humidity")
+    st.subheader("📊 Temperature vs Humidity")
     plot_relationship(renamed_df)
+
+
+    st.subheader("📊 Insights")
+
+    avg_temp = renamed_df["temperature"].mean()
+    avg_hum = renamed_df["humidity"].mean()
+
+    st.write(f"🌡️ Average Temperature: {avg_temp:.2f}")
+    st.write(f"💧 Average Humidity: {avg_hum:.2f}")
+
+    # Correlation
+    correlation = renamed_df["temperature"].corr(renamed_df["humidity"])
+
+    st.write(f"🔗 Correlation between Temperature and Humidity: {correlation:.2f}")
+
+    # Interpretation
+    if correlation > 0:
+        st.success("As temperature increases, humidity also tends to increase.")
+    elif correlation < 0:
+        st.warning("As temperature increases, humidity tends to decrease.")
+    else:
+        st.info("No strong relationship between temperature and humidity.")
