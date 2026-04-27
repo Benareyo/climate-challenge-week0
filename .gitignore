@@ -12,5 +12,21 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
+# Node
+node_modules/
+
 # OS files
 .DS_Store
+
+# Ignore junk
+notebooks/Telegram Desktop/
+notebooks/*.txt
+
+# Node (not needed)
+node_modules/
+package.json
+package-lock.json
+
+# Data
+data/
+*.csv
